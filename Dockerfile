@@ -12,6 +12,7 @@ RUN \
   apt-get update && \
   apt-get install -y curl && \
   apt-get install -y sudo && \
+  apt-get install -y uuid-runtime && \
   rm -rf /var/lib/apt/lists/*
 
 # Docker.
