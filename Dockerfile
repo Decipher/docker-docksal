@@ -4,7 +4,7 @@ FROM ubuntu:16.04
 ENV \
   DOCKER_COMPOSE_BIN_NIX="/usr/local/bin/docker-compose" \
   REQUIREMENTS_DOCKER='17.04.0-ce' \
-  REQUIREMENTS_DOCKER_COMPOSE='1.12.0' \
+  REQUIREMENTS_DOCKER_COMPOSE='1.11.0' \
   URL_DOCKER_NIX="https://get.docker.com/"
 
 # Base tools.
