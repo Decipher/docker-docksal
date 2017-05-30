@@ -23,9 +23,22 @@ RUN \
   curl -fL# https://github.com/docker/compose/releases/download/${REQUIREMENTS_DOCKER_COMPOSE}/docker-compose-Linux-x86_64 -o "$DOCKER_COMPOSE_BIN_NIX" && \
 	chmod +x "$DOCKER_COMPOSE_BIN_NIX"
 
-# Docksal.
+# Install Docksal.
 RUN \
   mkdir -p /usr/local/bin && \
   curl -fsSL https://raw.githubusercontent.com/docksal/docksal/master/bin/fin -o /usr/local/bin/fin && \
-  chmod +x /usr/local/bin/fin && \
-  fin update --config
+  chmod +x /usr/local/bin/fin
+  
+# Create Docksal user.
+RUN \
+  newgrp docker && \
+  useradd -c 'Docksal user' -m -d /home/docksal -s /bin/bash -G docker,staff docksal
+
+# Change user.
+USER docksal
+
+# Confgure docksal.
+RUN fin update --config
+
+WORKDIR /var/www
+VOLUME ["/var/www"]
